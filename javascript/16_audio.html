@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>16_audio.html</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div style="text-align:center">
+    <h1>음악목록</h1>
+    <img src="../music/gangnamstyle.jpg" id="poster" style="width:300px; height:250px" />
+    <br /><br />
+    <audio id="audio1" src="../music/gangnamstyle.mp3" controls autoplay></audio>
+    <hr />
+  </div>
+  <hr />
+  <div style="margin:0 auto; width:50%">
+    <ol>
+
+      <li><a href="javascript:loadMusic('../music/genie.jpg','../music/genie.mp3')">소원을 말해봐</a></li>
+      <li><a href="javascript:loadMusic('../music/sheis.jpg','../music/sheis.mp3')">그녀가 처음 울던날</a></li>
+      <li><a href="javascript:loadMusic('../music/candy.jpg','../music/candy.mp3')">내귀에 캔디</a></li>
+      <li><a href="javascript:loadMusic('../music/gangnamstyle.jpg','../music/gangnamstyle.mp3')">강남 스타일</a></li>
+    </ol>
+  </div>
+  <script>
+  function loadMusic(jpg, mp3) {
+    // alert(jpg);
+    // alert(mp3);
+    var poster = document.getElementById("poster");
+    var audio1 = document.getElementById("audio1");
+
+    poster.src = jpg;
+    audio1.src = mp3;
+  }//loadMusic end
+  </script>
+</body>
+
+</html>

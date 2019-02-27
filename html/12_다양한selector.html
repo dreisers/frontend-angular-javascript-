@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+	<meta dhareset="UTF-8">
+<title>12_다양한selector연습.html</title>
+<style>
+  /* h1, p { background-color:yellow;} 
+  div p { background-color: yellow;} */
+  div > p { background-color: yellow;}
+  div > span > p { background-color: red;}
+  body { background-color : #33ff99; }
+  #menu { width : 100; height : 100; background: blue; }
+  .hide { width : 0; height : 0; margin : 0; padding : 0; font-size:0;}
+  #navi {background:white; margin:auto; width: 300px; height:300px;}
+  /* margin:auto = 수평을 기준으로 가운데 정렬 */ 
+  #navi>ul {margin : 0; padding : 0; list-style : none;}
+  #navi>ul>li>a{width:200px; height:100px; text-decoration:none; background:#ffff00;}
+  #navi>ul>li :nth-child(3) {font-weight:bold}
+</style>
+ </head>
+ <body>
+<h1> Welcome to My Homepage </h1>
+
+<div>
+<h2> My name is Donald. </h2>
+<p> I live in Duckgurg. </p>
+<span><p> My best friend is Mickey.</p></span>
+</div>
+
+
+<div id="menu">
+<ol class='hide'>
+<li>손흥민</li>
+<li>박지성</li>
+<li>김연아</li>
+</div>
+<hr>
+
+<div id="navi">
+<h1 class='hide'> 주요메뉴</h1>
+<ul>
+<li><a href=''>정치</a></li>
+<li><a href=''>경제</a></li>
+<li>사회</li>
+<li>연예</li>
+</ol>
+</ul>
+
+</style>
+ </body>
+
+</html>

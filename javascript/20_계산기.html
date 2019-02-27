@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>20_계산기.html</title>
+  <style>
+  .line {border:1px solid;
+    border-radius:7px;}
+  .txt  {
+    text-align:right;
+     font-weight:bold;
+		 font-size:12px;
+		 color:rgb(0, 0, 0);
+		 height:30px;
+     border: 1px solid;
+     border-radius : 5px;
+   }
+     input[type=button]{
+       width: 100%;
+       height: 100%;
+       margin: 5px auto 5px auto;
+       font-size: 15px;
+
+      background-color: rgba(244, 185, 185, 0.88)
+        }
+    td{
+      width: 10px;
+    height: 10px;
+    }
+       </style>
+</head>
+
+<body>
+  <h1>* 미니 계산기 *</h1>
+  <form name="calcfrm" id="calcfrm">
+    <table class="line">
+      <tr>
+        <td colspan="4">
+          <!-- 결과출력상자 -->
+          <input type="text" name="result" id="result" size="25" value="0" class="txt" readonly>
+        </td>
+      </tr>
+      <td><input type="button" value="←" onclick="backspace(this.form)" </td>
+      <td><input type="button" value="C" onclick="cls(this.form)" </td>
+       <td><input type="button" value="/" onclick="operator('/')"></td>
+      <td><input type="button" value="*" onclick="operator('*')"></td>
+      <tr>
+        <td><input type="button" value="7" onclick="inputData(7)"></td>
+        <td><input type="button" value="8" onclick="inputData(8)"></td>
+        <td><input type="button" value="9" onclick="inputData(9)"></td>
+        <td><input type="button" value="-" onclick="operator('-')"/> </td>
+      </tr>
+      <tr>
+        <td><input type="button" value="4" onclick="inputData(4)" /> </td>
+        <td><input type="button" value="5" onclick="inputData(5)"  /></td>
+         <td><input type="button" value="6" onclick="inputData(6)"/> </td>
+         <td><input type="button" value="+" onclick="operator('+')" /> </td>
+        </tr>
+        <tr>
+        <td><input type="button" value="1" onclick="inputData(1)"  /></td>
+        <td><input type="button" value="2" onclick="inputData(2)" /> </td>
+        <td><input type="button" value="3" onclick="inputData(3)"  /></td>
+        <td rowspan="2"><input type="button" value="  =  " onclick="compute()" /> </td>
+       </tr>
+          <tr>
+        <td colspan="2"><input type="button" value="  0  " onclick="inputData(0)" /></td>
+        <td><input type="button" value="." onclick="" </td>
+       </tr>
+      </table>
+    </form>
+    <script>
+          function cls(f){
+          //f -> <form name=calcfrm></form>
+          //CE버튼을 클릭하면 name=result상자에 0을 대입
+          f.result.value = 0;
+          }//cls end
+          function inputData(su){
+          var f = document.calcfrm;
+          //su변수에 전달값을 name=result상자에 출력
+          //Number() 숫자형으로 형변환
+          f.result.value = Number(f.result.value + su);
+          }// inputData end
+          function backspace(f){
+            f.result.value = f.result.value.substring(0, f.result.value.length -1);
+          }// backspace end
+          //전역변수
+          var op; //연산기호
+          var num1, num2; // 사용자가 입력한 첫번째수, 두번째수
+          function operator(kind){
+            //1) 사용자가 입력한 연산기호를 전역변수(op)에 저장
+            op = kind;
+            //2) 현재 name=result가 가지고 있는 값을
+            //    첫번째수로 저장
+            num1 = Number(document.calcfrm.result.value);
+            //3) 두번째를 입력받기 위해 name=result값을 초기화
+            document.calcfrm.result.value = 0;
+            }//operator end
+          function compute(){
+            //계산결과 출력
+            //1) 두번째수 가져오기
+            num2 = Number(document.calcfrm.result.value);
+            //2) 계산 및 출력
+            document.calcfrm.result.value = eval(num1 + op + num2);
+            }//compute end
+          </script>
+</body>
+
+</html>

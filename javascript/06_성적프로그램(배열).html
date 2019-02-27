@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>06_성적프로그램(배열).html</title>
+  <style>	
+  </style>
+ </head>
+ <body>
+	<div id="demo"></div>
+	<script>
+	//※주의사항: 크롬에서 변수명 name 사용할 경우 주의할 것!!
+    var uname = ["홍길동","무궁화","라일락","진달래","개나리"];
+    var kor   = [100, 35, 75, 95, 85];
+    var eng   = [100, 40, 80, 95, 90];
+    var mat   = [95, 50, 60, 35, 85];
+    var aver  = [0, 0, 0, 0, 0];
+    var rank  = [1, 1, 1, 1, 1];
+    var size  = uname.length;
+
+    //평균을 구하시오
+    for(idx=0; idx<size; idx++) {
+      aver[idx] = (kor[idx]+eng[idx]+mat[idx])/3;
+    }
+        
+    
+    //등수를 구하시오 (평균을 기준으로)
+    for(a=0; a<size; a++) {      
+      for(b=0; b<size; b++) {
+        if(aver[a]<aver[b]) {
+          rank[a] = rank[a] + 1;
+        }
+      }      
+    }//for end
+
+	//출력
+    var result="";
+	result+="";
+ 	result+="<table border='1'>";
+ 	result+="<tr>";
+	result+="    <th>이름</th>";
+	result+="    <th>국어</th>";
+	result+="    <th>영어</th>";
+	result+="    <th>수학</th>";
+	result+="    <th>평균</th>";
+	result+="    <th>등수</th>";
+	result+="    <th>결과</th>";
+ 	result+="</tr>";
+
+	for(idx=0; idx<size; idx++) {
+	    result+="<tr>";
+		result+="    <td>"+uname[idx]+"</td>";
+		result+="    <td>"+kor[idx]+"</td>";
+		result+="    <td>"+eng[idx]+"</td>";
+		result+="    <td>"+mat[idx]+"</td>";
+		result+="    <td>"+parseInt(aver[idx])+"</td>";
+		result+="    <td>"+rank[idx]+"</td>";
+		result+="    <td>";
+
+        if(aver[idx]>=70){
+          if(kor[idx]<40||eng[idx]<40||mat[idx]<40){
+            result+=" 재시험 ";
+          }
+          else {
+            result+=" 합격 ";
+          }        
+        }
+        else {
+          result+=" 불합격 ";
+        }      
+            
+        for(n=1; n<=aver[idx]/10; n++){
+          result+="*";
+        }
+
+        if(aver[idx]>=95){
+          result+=" <span style='color:red; font-weight:bold'>장학생</span> "; 
+        }
+		result+="    </td>";
+ 	    result+="</tr>";
+	}
+
+  	result+="</table>";
+
+    document.getElementById("demo").innerHTML = result;
+	</script>  
+ </body>
+</html>

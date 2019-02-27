@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>21_이미지스크롤.html</title>
+  <style>
+    #myfilm {
+      position: absolute;
+      left: 100px;
+      top: 10px;
+      width: 270px;
+      height: 150px;
+      background-color: white;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<script>
+  //1) 스크롤 하고자 하는 이미지를 변수에 대입
+  var ctnt = [];
+  ctnt[0] = "<img src='../images/k1.png' width='85' />";
+  ctnt[1] = "<img src='../images/k2.png' width='85' />";
+  ctnt[2] = "<img src='../images/k3.png' width='85' />";
+  ctnt[3] = "<img src='../images/k4.png' width='85' />";
+  ctnt[4] = "<img src='../images/k5.png' width='85' />";
+  ctnt[5] = "<img src='../images/k6.png' width='85' />";
+  ctnt[6] = "<img src='../images/k7.png' width='85' />";
+  ctnt[7] = "<img src='../images/k3.png' width='85' />";
+  //2) 1)에서 준비한 이미지를 id=myfilm에 배치하기
+  function start(){
+    for(var idx=0; idx<8; idx++){
+document.write("<div id='area" + idx + "'  style='position:absolute;top:0px;left:" + (90*idx)+ "px;'>");
+      			document.write(ctnt[idx]);
+      			document.write("</div>");
+      		}//for end
+//3초후에 scroll함수 1번 호출
+setTimeout(scroll, 1000);
+  } //start end
+
+  function scroll() {
+    // 3) 이미지 스크롤
+    // alert("scroll함수호출");
+    // alert(document.getElementById("area0").style);
+    // alert(document.getElementById("area0").style.left);
+for(idx=0; idx<8; idx++){
+    var tmp = document.getElementById("area"+idx).style;
+    tmp.left = parseInt(tmp.left) - 10 + "px";
+
+  //4)이미지 순환
+  if(parseInt(tmp.left) <= -90){
+  tmp.left = 90*(8-1) + 'px';
+}//if end
+}//for end
+setTimeout(scroll, 1);
+  }//scroll end
+</script>
+
+<body>
+  <!-- 이미지가 스크롤되는 위치 -->
+  <div id="myfilm">
+    <script> start(); </script>
+  </div>
+</body>
+
+</html>

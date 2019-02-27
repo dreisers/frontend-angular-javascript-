@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div ng-app="">
+        <p> * AngularJS 테스트 * </p>
+        <p> 이름 : <input type="text" ng-model="name"> </p>
+        <p ng-bind="name"></p>
+        <p>{{name}}</p>
+    </div>
+        <!--
+        ng- : Directive
+            ng-app   : 앵귤러 앱지정
+            ng-model : 실제 데이터
+            ng-bind  : 출력, 약자 {{ }}
+        -->
+
+<!-- angular import-->
+<script src="js/angular.min.js"></script>
+<script>
+    /*
+        - Angular JS = jquery.js + underscore.js
+        - Backend단 MVC Framework   - Spring, Struts
+        - Forntend단 MVC Framework  - AngularJS
+        - Model      : 데이터
+        - View       : 사용자와 만나는 인터페이스(데이터출력, 이벤트 처리)
+        - Controller : Model과 View를 제어
+    */
+
+</script>
+</body>
+</html>

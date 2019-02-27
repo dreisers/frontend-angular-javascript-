@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="repeatApp">
+<head>
+        <meta charset="utf-8">
+<title>영화내용 출력페이지</title>
+<link rel="stylesheet" href="css/kakao.font.css" />
+<style>
+    body {
+        font: 200 20px "Kakao", sans-serif;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        float: left;
+        width: 160px;
+        padding: 10px;
+        margin: 10px;
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        border:5px solid #757575;
+    }
+
+    h3 {
+        margin:5px 0;
+        text-align: center;
+        font-size:15px;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        width:120px;
+    }
+</style>
+</head>
+<body ng-controller="myCtrl">
+    <h1>영화목록<em>{{movies.length}}</em>개</h1>
+    <button ng-click="deleteMovie(movies)">삭제</button>
+    <ul>
+        <li ng-repeat="movie in movies">
+            <img src="poster/{{movie.poster}}" width="160" />
+            <h3>{{movie.name}}</h3>
+        </li>
+    </ul>
+<script src="js/angular.min.js"></script>
+<script>
+    var app = angular.module("repeatApp", []);
+    //$scope : View와 Controller연결해서 Model접근가능
+    //$http    :  jQuery에서 $.ajax()와 동일한 기능의 객체
+    app.controller("myCtrl", ["$scope", "$http", function($scope, $http){
+        var promise = $http({"url":"json/movies.json"});
+        promise.success(function(result){
+            //alert(result); 
+            //서버에서 응답받은 데이터를 현재페이지 View에서 공유할수 있도록 함
+            
+            $scope.movies = result;
+        });//success end
+        //삭제버튼을 클릭했을때 호출하는 deleteMovie()정의
+        $scope.deleteMovie = function(movies) {
+                movies.shift();
+        }//deleteMovie end
+
+    }]); //controller end
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
